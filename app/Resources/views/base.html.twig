@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>{% block title %}Welcome!{% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">Todolist</a>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/todo/create">Add Todo</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container" style="padding-top: 80px;">
+
+      <div class="row">
+        <div class="col-md-12">
+          {% for flash_message in app.session.flashbag.get('notice') %}
+            <div class="alert alert-success">
+              {{ flash_message }}
+            </div>
+          {% endfor %}
+          {% for flash_message in app.session.flashbag.get('error') %}
+            <div class="alert alert-danger">
+              {{ flash_message }}
+            </div>
+          {% endfor %}
+          {% block body %}{% endblock %}
+        </div>
+      </div>
+
+    </div><!-- /.container -->
+
+    {% block javascripts %}{% endblock %}
+  </body>
+</html>
